@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  /* Venue palette — dark room, chromatic bloom */
+  --color-venue: #05050a;
+  --color-venue-2: #0b0a12;
+  --color-haze: #f2ecff;
+  --color-mist: #b7b2cb;
+  --color-dim: #84819a;
+  --color-ember: #ff4d1c;
+  --color-magenta: #ff2e93;
+  --color-electric: #3d6bff;
+  --color-line: rgba(242, 236, 255, 0.12);
+  --color-line-strong: rgba(242, 236, 255, 0.3);
+
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-venue);
+    color: var(--color-haze);
+    font-family: var(--font-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+  }
+
+  ::selection {
+    background: var(--color-magenta);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-magenta);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+}
+
+@utility lit-text {
+  background-image: linear-gradient(
+    96deg,
+    var(--color-ember),
+    var(--color-magenta) 48%,
+    var(--color-electric)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility lit-fill {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-ember),
+    var(--color-magenta) 55%,
+    var(--color-electric)
+  );
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
