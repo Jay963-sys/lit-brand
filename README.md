@@ -19,7 +19,9 @@ npm run dev
 | `lib/content.ts` | All page content as typed data. Swap for Drizzle queries when the client wants a CMS — component signatures don't change. |
 | `lib/site.ts` | Brand constants, nav, contact details, event-type list. |
 | `lib/quote-schema.ts` | Zod schema shared by the server action and the form's error display. |
-| `components/crowd-canvas.tsx` | The hero. Canvas simulation of ~900 wristbands plus the cue deck. |
+| `components/crowd-canvas.tsx` | The hero. Canvas crowd of wristbands with stage beams, cursor spotlight, tap-to-ripple, and the cue deck. `MiniCrowd` is the small version used on experience cards (pauses off-screen). |
+| `components/product-visual.tsx` | Glowing line illustrations of each product — stand-ins until real product photos arrive. |
+| `components/lit-words.tsx`, `feel-list.tsx`, `marquee.tsx` | Scroll-lit statement, scroll-lit list, infinite ticker. |
 | `app/quote/actions.ts` | Server action: validate → email the team → confirm to the requester. |
 | `emails/` | React Email templates. |
 
@@ -33,8 +35,8 @@ never starts the animation loop.
 
 ## Before launch
 
-- [ ] **Replace the placeholder case studies** in `lib/content.ts` — all three are marked as
-      samples. Nothing on `/work` should ship as-is.
+- [ ] `/experiences` describes use cases (from the brand profile), not past events. Add real
+      event photos/videos and case studies once the first events are delivered. `/work` redirects there.
 - [ ] Confirm product specs with the client (runtime, channel counts, range are best guesses
       from the brand profile and need real numbers).
 - [ ] Swap the CSS placeholder mark in `components/logo.tsx` for the real logo.

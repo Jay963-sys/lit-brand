@@ -1,15 +1,15 @@
 import Link from "next/link";
-import Logo from "./logo";
+import Logo, { Mark } from "./logo";
 import { site, whatsappLink } from "@/lib/site";
 import { products } from "@/lib/content";
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 lg:px-[72px]">
+      <div className="mx-auto max-w-[1320px] px-5 py-14 sm:px-8 lg:px-[72px]">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo />
+            <Logo id="logo-foot" />
             <p className="mt-4 max-w-[34ch] text-[15px] text-mist">{site.short}</p>
             <p className="label mt-6">{site.tagline}</p>
           </div>
@@ -45,6 +45,9 @@ export default function SiteFooter() {
               </li>
             </ul>
           </div>
+        </div>
+        <div className="mt-14 flex justify-center">
+          <Mark id="mark-foot" className="mark-glow h-[clamp(90px,14vw,150px)] w-auto opacity-90" />
         </div>
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
           <span className="label">{site.city}</span>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Wrap({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-[72px] ${className}`}>{children}</div>
+    <div className={`mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-[72px] ${className}`}>{children}</div>
   );
 }
 
@@ -20,8 +20,13 @@ export function Bloom({
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute z-0 rounded-full blur-[90px] ${className}`}
-      style={{ width: size, height: size, background: color, opacity }}
+      className={`pointer-events-none absolute z-0 rounded-full ${className}`}
+      style={{
+        width: size,
+        height: size,
+        opacity: opacity * 2.2,
+        background: `radial-gradient(circle, ${color} 0%, ${color}55 30%, transparent 68%)`,
+      }}
     />
   );
 }
@@ -36,7 +41,7 @@ export function GlowButton({
   external?: boolean;
 }) {
   const cls =
-    "lit-fill inline-block rounded-full px-5 py-3 text-sm font-semibold text-white no-underline shadow-[0_0_34px_rgba(255,46,147,0.35)] transition hover:-translate-y-0.5 hover:brightness-110";
+    "lit-fill lit-shimmer inline-block rounded-full px-5 py-3 text-sm font-semibold text-white no-underline shadow-[0_0_34px_rgba(255,46,147,0.35)] transition hover:-translate-y-0.5 hover:brightness-110";
   return external ? (
     <a href={href} className={cls}>
       {children}

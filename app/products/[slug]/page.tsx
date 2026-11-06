@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import ProductVisual from "@/components/product-visual";
 import Reveal from "@/components/reveal";
 import { Bloom, Eyebrow, GhostButton, GlowButton, H2, Wrap } from "@/components/ui";
 import { accentHex, getProduct, products } from "@/lib/content";
@@ -36,7 +37,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           opacity={0.22}
           className="-top-40 -right-40"
         />
-        <Wrap className="relative z-10">
+        <Wrap className="relative z-10 grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
           <Link href="/products" className="label no-underline transition hover:text-haze">
             ← All products
           </Link>
@@ -49,6 +51,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="mt-6 max-w-[56ch] text-[clamp(16px,1.6vw,19px)] text-mist">
             {product.summary}
           </p>
+          </div>
+          <div className="relative mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center rounded-full border border-line bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_65%)]">
+            <span className="absolute inset-8 rounded-full border border-line" />
+            <ProductVisual slug={product.slug} className="relative w-[78%]" />
+          </div>
         </Wrap>
       </section>
 
@@ -114,6 +121,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     className="absolute -top-16 -right-12 h-40 w-40 rounded-full opacity-30 blur-[44px] transition group-hover:opacity-60"
                     style={{ background: accentHex[p.accent] }}
                   />
+                  <ProductVisual slug={p.slug} delay={3} className="relative mb-4 h-20 w-24" />
                   <span className="label relative">{p.kicker}</span>
                   <h3 className="relative mt-3 text-[clamp(20px,2.2vw,26px)]">{p.name}</h3>
                   <p className="relative mt-2 text-[15px] text-mist">{p.summary}</p>
@@ -121,7 +129,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               ))}
             </div>
             <div className="mt-12 flex flex-wrap gap-3">
-              <GhostButton href="/work">See past events</GhostButton>
+              <GhostButton href="/experiences">See experiences</GhostButton>
             </div>
           </div>
         </Wrap>

@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Syne, Manrope, DM_Mono } from "next/font/google";
+import { Inter_Tight, Instrument_Serif, DM_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import { site } from "@/lib/site";
 
-const syne = Syne({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-syne" });
-const manrope = Manrope({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-manrope",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter-tight",
+});
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
 });
 const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-dm-mono" });
 
@@ -32,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${manrope.variable} ${dmMono.variable}`}>
+    <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable} ${dmMono.variable}`}>
       <body>
         <SiteHeader />
         <main>{children}</main>

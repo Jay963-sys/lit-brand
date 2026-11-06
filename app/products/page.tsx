@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import ProductVisual from "@/components/product-visual";
 import Reveal from "@/components/reveal";
 import { Eyebrow, GlowButton, H2, Wrap } from "@/components/ui";
 import { accentHex, products } from "@/lib/content";
@@ -16,7 +17,7 @@ export default function ProductsPage() {
       <section className="pt-40 pb-[clamp(40px,7vw,80px)]">
         <Wrap>
           <Eyebrow>Products</Eyebrow>
-          <H2>Three ways to light a room.</H2>
+          <H2>Three ways to light up a room.</H2>
           <p className="mt-6 max-w-[58ch] text-[clamp(16px,1.5vw,18.5px)] text-mist">
             Every product runs on the same control system, so they can be mixed in one venue and
             fired from one cue list.
@@ -31,13 +32,14 @@ export default function ProductsPage() {
               <Reveal key={p.slug} delay={i * 80}>
                 <Link
                   href={`/products/${p.slug}`}
-                  className="group relative grid gap-6 overflow-hidden border-b border-line py-10 no-underline md:grid-cols-[1fr_1.4fr] md:items-start"
+                  className="group relative grid gap-6 overflow-hidden border-b border-line py-10 no-underline md:grid-cols-[220px_1fr_1.4fr] md:items-center"
                 >
                   <span
                     aria-hidden
                     className="absolute top-0 -left-24 h-[220px] w-[220px] rounded-full opacity-0 blur-[70px] transition duration-500 group-hover:opacity-40"
                     style={{ background: accentHex[p.accent] }}
                   />
+                  <ProductVisual slug={p.slug} delay={i * 3} className="relative h-[150px] w-[190px]" />
                   <div className="relative">
                     <span className="label">
                       Product {String(p.order).padStart(2, "0")} — {p.kicker}

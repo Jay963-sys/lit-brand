@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import { useSearchParams } from "next/navigation";
 import { submitQuote } from "@/app/quote/actions";
 import type { QuoteState } from "@/lib/quote-schema";
 import { eventTypes, site, whatsappLink } from "@/lib/site";
@@ -38,7 +39,17 @@ function Submit() {
   );
 }
 
-export default function QuoteForm({ preselect }: { preselect?: string }) {
+function Preselect({ children }: { children: (slug?: string) => React.ReactNode }) {
+  const params = useSearchParams();
+  return <>{children(params.get("product") ?? undefined)}</>;
+}
+
+export default function QuoteForm({ withSearchParams = false }: { withSearchParams?: boolean }) {
+  if (withSearchParams) return <Preselect>{(slug) => <QuoteFormInner preselect={slug} />}</Preselect>;
+  return <QuoteFormInner />;
+}
+
+function QuoteFormInner({ preselect }: { preselect?: string }) {
   const [state, formAction] = useActionState(submitQuote, initial);
 
   if (state.status === "success") {

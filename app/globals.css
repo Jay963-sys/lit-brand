@@ -13,8 +13,9 @@
   --color-line: rgba(242, 236, 255, 0.12);
   --color-line-strong: rgba(242, 236, 255, 0.3);
 
-  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
 }
 
@@ -23,11 +24,19 @@
     scroll-behavior: smooth;
   }
 
+  /* Nothing may push the page sideways on phones. `clip` (unlike hidden)
+     doesn't create a scroll container, so sticky elements keep working. */
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
   body {
     background-color: var(--color-venue);
     color: var(--color-haze);
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
@@ -36,9 +45,10 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-weight: 600;
+    letter-spacing: -0.035em;
     line-height: 0.98;
+    overflow-wrap: break-word;
   }
 
   ::selection {
@@ -65,12 +75,24 @@
   background-image: linear-gradient(
     96deg,
     var(--color-ember),
-    var(--color-magenta) 48%,
-    var(--color-electric)
+    var(--color-magenta) 25%,
+    var(--color-electric) 50%,
+    var(--color-magenta) 75%,
+    var(--color-ember)
   );
+  background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  padding-right: 0.06em; /* keeps italic overhang inside the gradient */
+}
+
+/* Elegant italic serif for accent words */
+@utility serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 @utility lit-fill {
@@ -80,6 +102,130 @@
     var(--color-magenta) 55%,
     var(--color-electric)
   );
+}
+
+/* ---------- Motion ---------- */
+@keyframes lit-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  60%,
+  100% {
+    transform: translateX(260%) skewX(-20deg);
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+.lit-float {
+  animation: lit-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+.mark-glow {
+  filter: drop-shadow(0 0 8px rgba(200, 107, 255, 0.55));
+}
+.breathe {
+  animation: breathe 5s ease-in-out infinite;
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee-track-reverse {
+  animation: marquee 38s linear infinite reverse;
+}
+.marquee:hover .marquee-track,
+.marquee:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(242, 236, 255, 0.45);
+}
+.lit-dot {
+  display: inline-block;
+  width: 0.22em;
+  height: 0.22em;
+  border-radius: 9999px;
+  background: var(--color-magenta);
+  box-shadow:
+    0 0 18px var(--color-magenta),
+    0 0 40px var(--color-magenta);
+}
+
+/* Scroll-lit statement */
+.lit-word {
+  color: rgba(242, 236, 255, 0.14);
+  transition:
+    color 0.35s ease,
+    text-shadow 0.35s ease;
+}
+.lit-word[data-on="true"] {
+  color: var(--color-haze);
+}
+.lit-word-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.lit-word-accent[data-on="true"] {
+  color: var(--color-magenta);
+  text-shadow: 0 0 30px rgba(255, 46, 147, 0.55);
+}
+
+/* Button shine */
+.lit-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.lit-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: shimmer 3.8s ease-in-out infinite;
+  z-index: -1;
+}
+
+
+/* Lit list — lines light as they pass the middle of the screen */
+.feel-line {
+  color: rgba(242, 236, 255, 0.16);
+  transition:
+    color 0.5s ease,
+    text-shadow 0.5s ease,
+    transform 0.5s ease;
+}
+.feel-line[data-on="true"] {
+  color: var(--color-haze);
+  transform: translateX(14px);
 }
 
 /* Scroll reveal */
@@ -108,5 +254,11 @@
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  .marquee-track,
+  .marquee-track-reverse,
+  .lit-float,
+  .lit-shimmer::after {
+    animation: none !important;
   }
 }

@@ -141,103 +141,191 @@ export const venues = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Case studies                                                        */
+/* Experiences                                                         */
 /* ------------------------------------------------------------------ */
-/* PLACEHOLDER CONTENT — replace with real events before launch.       */
+/*
+ * Use cases drawn from the brand profile, not past events. They describe how
+ * a room would be lit, so nothing here claims a client or a headcount. When
+ * real events are delivered, add a `caseStudy` field or a separate list.
+ */
 
-export type CaseStudy = {
+export type Experience = {
   slug: string;
-  title: string;
-  client: string;
-  category: string;
-  location: string;
-  date: string;
-  guests: string;
+  name: string;
+  kicker: string;
+  headline: string;
+  moment: string;
   summary: string;
-  brief: string;
-  approach: string[];
+  body: string[];
   cueList: { cue: string; moment: string }[];
   products: string[];
   accent: Accent;
-  published: boolean;
+  /** Which hero cue the mini crowd runs on cards for this experience. */
+  scene: "wave" | "channels" | "glow" | "split" | "sweep" | "pulse";
 };
 
-export const caseStudies: CaseStudy[] = [
+export const experiences: Experience[] = [
   {
-    slug: "sample-arena-night",
-    title: "Twelve thousand wrists on the same beat",
-    client: "Sample Client — Arena Night",
-    category: "Concert",
-    location: "Lagos",
-    date: "2026",
-    guests: "12,000",
+    slug: "concerts",
+    name: "Concerts & festivals",
+    kicker: "Arena · open air",
+    headline: "The entire crowd pulses with the beat.",
+    moment: "An arena where every wrist hits on the drop.",
     summary:
-      "Placeholder case study. Replace with a real event once the first show is delivered.",
-    brief:
-      "Placeholder. Describe what the organiser came to us with — the venue, the constraint, and what they wanted the audience to feel.",
-    approach: [
-      "Placeholder. Describe the deployment: distribution at the gate, transmitter placement, section mapping.",
-      "Placeholder. Describe the cue design and how it was rehearsed against the setlist.",
+      "From the front row to the back seats, every guest becomes a pixel in a light show the artist can see from the stage.",
+    body: [
+      "At a concert the rig gets the applause and the performer carries the room. With LitBands, the audience gets a part to play too. Colour rolls front to back on the opening track, the whole venue drops to black before the walk-out, and the encore lands in a full-room colour sweep.",
+      "We build the cue list against the setlist with your production team, then run it live from the booth so it follows the show, not a pre-recorded timeline.",
     ],
     cueList: [
-      { cue: "Blackout", moment: "Walk-out, eight seconds before the first note" },
-      { cue: "Wave", moment: "Opening track, front-to-back through the floor" },
-      { cue: "Split the room", moment: "Call and response mid-set" },
+      { cue: "Blackout", moment: "Walk-out, a few seconds before the first note" },
+      { cue: "Wave", moment: "Opening track, rolling front to back" },
+      { cue: "Split the room", moment: "Call and response between sections" },
       { cue: "Colour sweep", moment: "Encore" },
     ],
-    products: ["litbands"],
+    products: ["litbands", "lanyards"],
     accent: "ember",
-    published: true,
+    scene: "wave",
   },
   {
-    slug: "sample-wedding",
-    title: "The room lit up at the first dance",
-    client: "Sample Client — Wedding",
-    category: "Wedding",
-    location: "Lagos",
-    date: "2026",
-    guests: "400",
+    slug: "silent-disco",
+    name: "Silent disco",
+    kicker: "Three channels · one floor",
+    headline: "Every headset glows with the rhythm of the DJ.",
+    moment: "A silent disco where you can see which DJ is winning.",
     summary:
-      "Placeholder case study. Replace with a real event once the first wedding is delivered.",
-    brief: "Placeholder. What the couple and planner asked for.",
-    approach: [
-      "Placeholder. Table-by-table sectioning and the palette matched to the wedding colours.",
-      "Placeholder. How the cue list was timed to the programme run sheet.",
+      "Each channel has its own colour, so the floor becomes a live chart of what everyone is listening to.",
+    body: [
+      "Silent disco works best when the crowd can feel the competition. Switch channel and your headset changes colour with you, so from anywhere in the room you can see the split between DJs shift in real time.",
+      "Add LitBands and the whole floor can be pulled onto one colour for a takeover moment, then released back to the battle.",
     ],
     cueList: [
-      { cue: "Pulse", moment: "Couple's entrance" },
-      { cue: "Wave", moment: "First dance" },
+      { cue: "Channel colour", moment: "Live all night, follows each listener" },
+      { cue: "Takeover", moment: "One DJ claims the whole floor" },
+      { cue: "Strobe", moment: "Midnight drop" },
+    ],
+    products: ["headsets", "litbands"],
+    accent: "electric",
+    scene: "channels",
+  },
+  {
+    slug: "weddings",
+    name: "Weddings",
+    kicker: "Receptions · first dance",
+    headline: "Guests light up during the couple's first dance.",
+    moment: "A reception that glows in the couple's colours.",
+    summary:
+      "Matched to the wedding palette and timed to the run sheet, so the big moments feel bigger and the photos look unreal.",
+    body: [
+      "We match the light to your colours — the aso-ebi, the décor, the cake — and work from the planner's run sheet so every key moment has a cue waiting for it.",
+      "Tables can be lit one by one for the entrance, the whole room can slow-glow for the first dance, and the dance floor can go full party once the DJ takes over.",
+    ],
+    cueList: [
+      { cue: "Pulse", moment: "Couple's grand entrance" },
+      { cue: "Slow glow", moment: "First dance" },
       { cue: "Colour sweep", moment: "Cake cutting" },
+      { cue: "Party mode", moment: "Dance floor opens" },
     ],
     products: ["litbands", "headsets"],
     accent: "magenta",
-    published: true,
+    scene: "glow",
   },
   {
-    slug: "sample-silent-disco",
-    title: "Three channels, three colours, one floor",
-    client: "Sample Client — Campus Silent Disco",
-    category: "Silent disco",
-    location: "Lagos",
-    date: "2026",
-    guests: "1,500",
+    slug: "brand-activations",
+    name: "Brand activations & corporate",
+    kicker: "Launches · conferences",
+    headline: "Your brand colours on every guest in the room.",
+    moment: "A launch where the reveal happens on every wrist at once.",
     summary:
-      "Placeholder case study. Replace with a real event once the first silent disco is delivered.",
-    brief: "Placeholder. The format and what made it a challenge.",
-    approach: [
-      "Placeholder. Channel assignment and transmitter coverage across the space.",
-      "Placeholder. How headset colour was used to drive the competition between DJs.",
+      "Custom colours and logo placement turn the audience into a brand asset — and the content people post afterwards carries your colours.",
+    body: [
+      "Bands and lanyards are printed in your brand colours and programmed with your palette, so the room is on-brand before anyone says a word.",
+      "Time the product reveal, the sponsor moment or the CEO walk-on to a single cue, and every guest becomes part of the announcement — and part of the video that goes out afterwards.",
     ],
     cueList: [
-      { cue: "Channel colour", moment: "Live throughout, follows listener choice" },
-      { cue: "Strobe", moment: "Channel takeover" },
+      { cue: "Brand colour hold", moment: "Doors open" },
+      { cue: "Countdown", moment: "Before the reveal" },
+      { cue: "Reveal flash", moment: "Product or sponsor reveal" },
     ],
-    products: ["headsets", "lanyards"],
+    products: ["lanyards", "litbands"],
+    accent: "magenta",
+    scene: "sweep",
+  },
+  {
+    slug: "church",
+    name: "Church programmes",
+    kicker: "Worship · crusades · conventions",
+    headline: "A congregation that shines together.",
+    moment: "Worship where the whole hall lifts its light at once.",
+    summary:
+      "Gentle, unified light for worship moments, and full colour for praise — controlled live by your media team.",
+    body: [
+      "Large gatherings live on moments of unity. A soft glow through the hall during worship, a wave of colour through praise, and a single moment where every light rises together.",
+      "We work with your media and programme team so the cues follow the service, not the other way round.",
+    ],
+    cueList: [
+      { cue: "Soft glow", moment: "Worship" },
+      { cue: "Wave", moment: "Praise session" },
+      { cue: "All lights up", moment: "Altar call or closing" },
+    ],
+    products: ["litbands", "lanyards"],
     accent: "electric",
-    published: true,
+    scene: "pulse",
+  },
+  {
+    slug: "sports-campus",
+    name: "Sports & campus",
+    kicker: "Stadiums · matric · homecoming",
+    headline: "Split the stands. Light up the win.",
+    moment: "A stadium where each side wears its colours in light.",
+    summary:
+      "Run a colour war across the stands, light the goal, or turn a campus night into the event everyone posts about.",
+    body: [
+      "Section-based control means each half of the venue can carry its own team or faculty colour, then come together for the winning moment.",
+      "For campus nights and homecomings, combine LitBands with silent disco headsets and the whole night becomes one shareable moment.",
+    ],
+    cueList: [
+      { cue: "Split the room", moment: "Team walk-out" },
+      { cue: "Flash", moment: "Goal, point or win" },
+      { cue: "Colour sweep", moment: "Trophy lift or closing" },
+    ],
+    products: ["litbands", "headsets"],
+    accent: "ember",
+    scene: "split",
   },
 ];
 
-export function getCaseStudy(slug: string) {
-  return caseStudies.find((c) => c.slug === slug);
+export function getExperience(slug: string) {
+  return experiences.find((e) => e.slug === slug);
 }
+
+/* ------------------------------------------------------------------ */
+/* Brand lines                                                         */
+/* ------------------------------------------------------------------ */
+
+export const feelings = [
+  "Goosebump moments",
+  "Crowd unity",
+  "Visual excitement",
+  "Content worth posting",
+  "A premium, futuristic atmosphere",
+];
+
+export const steps = [
+  {
+    title: "Plan the moments",
+    body: "Tell us the event, the run of show and the moments that matter. We build the cue list and match the palette to your brand or theme.",
+  },
+  {
+    title: "Brand the kit",
+    body: "Bands, lanyards and headsets are prepared in your colours, with your logo where you want it.",
+  },
+  {
+    title: "Hand out at the door",
+    body: "Guests put them on as they arrive. Nothing to download, nothing to set up on their side.",
+  },
+  {
+    title: "Run it live",
+    body: "Our operator drives the room from the booth on the night, firing cues on the beat and on your call.",
+  },
+];
