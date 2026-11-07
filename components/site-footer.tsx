@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo, { Mark } from "./logo";
+import Logo, { Wordmark } from "./logo";
 import { site, whatsappLink } from "@/lib/site";
 import { products } from "@/lib/content";
 
@@ -9,7 +9,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-[1320px] px-5 py-14 sm:px-8 lg:px-[72px]">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo id="logo-foot" />
+            <Logo />
             <p className="mt-4 max-w-[34ch] text-[15px] text-mist">{site.short}</p>
             <p className="label mt-6">{site.tagline}</p>
           </div>
@@ -46,8 +46,8 @@ export default function SiteFooter() {
             </ul>
           </div>
         </div>
-        <div className="mt-14 flex justify-center">
-          <Mark id="mark-foot" className="mark-glow h-[clamp(90px,14vw,150px)] w-auto opacity-90" />
+        <div className="brand-pattern relative mt-14 overflow-hidden rounded-[28px] border border-line px-6 py-[clamp(40px,8vw,90px)]">
+          <Wordmark title="LIT" className="mx-auto h-auto w-full max-w-[880px] text-core" />
         </div>
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
           <span className="label">{site.city}</span>

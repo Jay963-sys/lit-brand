@@ -32,7 +32,7 @@ export default function FeelList({ items }: { items: readonly string[] }) {
         <li
           key={item}
           data-on="false"
-          className="feel-line font-display text-[clamp(32px,6.4vw,88px)] leading-[1.02] font-semibold tracking-[-0.035em]"
+          className="feel-line font-display text-[clamp(24px,4.6vw,62px)] leading-[1.02] font-semibold tracking-[-0.035em]"
         >
           {item}
         </li>

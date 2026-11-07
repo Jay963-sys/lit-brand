@@ -15,7 +15,7 @@ export default function Marquee({
     >
       {items.map((item, i) => (
         <li key={item + i} className="flex items-center gap-10 whitespace-nowrap">
-          <span className={i % 2 ? "text-haze/80" : "lit-text serif"}>{item}</span>
+          <span className={i % 2 ? "text-haze/85" : "text-ember"}>{item}</span>
           <span className="lit-dot" />
         </li>
       ))}
@@ -24,7 +24,7 @@ export default function Marquee({
 
   return (
     <div
-      className={`marquee group flex overflow-hidden font-display text-[clamp(34px,6vw,84px)] font-medium tracking-[-0.035em] ${className}`}
+      className={`marquee group flex overflow-hidden font-display text-[clamp(26px,4.4vw,62px)] font-medium tracking-[-0.035em] ${className}`}
     >
       <div className={`flex ${reverse ? "marquee-track-reverse" : "marquee-track"}`}>
         {row(false)}

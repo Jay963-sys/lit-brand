@@ -24,17 +24,19 @@ export const cues: { id: Cue; label: string }[] = [
 
 const AUTO_ORDER: Cue[] = ["wave", "sweep", "pulse", "split", "channels", "strobe"];
 
-// 0 ember · 1 magenta · 2 violet · 3 electric · 4 cyan · 5 gold · 6 white · 7 hot pink
-const HUES = ["#FF4D1C", "#FF2E93", "#B23BFF", "#3D6BFF", "#22D3EE", "#FFC23D", "#FFFFFF", "#FF0066"];
+// Brand colours only: Ember, Pulse and Core. Repeated so random picks are
+// weighted roughly 3 Ember : 2 Pulse : 3 Core.
+// 0 ember · 1 pulse · 2 core · 3 pulse · 4 core · 5 ember · 6 core · 7 ember
+const HUES = ["#FF511F", "#2E5BFF", "#FFF6EC", "#2E5BFF", "#FFF6EC", "#FF511F", "#FFF6EC", "#FF511F"];
 const BEAM_HUE: Record<Cue, number> = {
-  wave: 1,
-  pulse: 2,
-  sweep: 4,
+  wave: 0,
+  pulse: 1,
+  sweep: 6,
   split: 0,
   strobe: 6,
-  black: 2,
-  channels: 3,
-  glow: 5,
+  black: 1,
+  channels: 1,
+  glow: 0,
 };
 
 type Dot = { x: number; y: number; u: number; v: number; s: number; r: number; h: number };
@@ -148,7 +150,7 @@ export default function CrowdCanvas({
       switch (cueRef.current) {
         case "pulse": {
           const p = 0.5 + 0.5 * Math.sin(t * 3 - d.v * 0.5);
-          return [(Math.floor(t * 0.4) + 1) % HUES.length, 0.12 + 0.88 * Math.pow(p, 2.2)];
+          return [Math.floor(t * 0.4) % 2 ? 1 : 0, 0.12 + 0.88 * Math.pow(p, 2.2)];
         }
         case "sweep": {
           const idx = Math.floor((d.u * 1.4 + t * 0.25) * HUES.length) % HUES.length;
@@ -168,13 +170,13 @@ export default function CrowdCanvas({
         case "channels": {
           // Listeners drift between three channels; colour shows who they're on.
           const k = (d.r + Math.floor(t / 6 + d.r * 0.6) * 0.37) % 1;
-          const ch = k < 0.42 ? 1 : k < 0.74 ? 3 : 4;
-          const beat = Math.pow(0.5 + 0.5 * Math.sin(t * (ch === 1 ? 4 : ch === 3 ? 3.2 : 2.6)), 3);
+          const ch = k < 0.42 ? 0 : k < 0.74 ? 3 : 6;
+          const beat = Math.pow(0.5 + 0.5 * Math.sin(t * (ch === 0 ? 4 : ch === 3 ? 3.2 : 2.6)), 3);
           return [ch, 0.35 + 0.65 * beat];
         }
         case "glow": {
           const p = 0.5 + 0.5 * Math.sin(t * 0.9 + d.u * 2 + d.r * 1.5);
-          return [d.r > 0.7 ? 6 : d.r > 0.35 ? 5 : 1, 0.3 + 0.6 * p];
+          return [d.r > 0.6 ? 6 : 0, 0.3 + 0.6 * p];
         }
         default: {
           const ph = t * 2.2 - d.u * 4.2 - d.v * 0.8;
@@ -291,7 +293,7 @@ export default function CrowdCanvas({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
         t0: (performance.now() - start) / 1000,
-        hue: [0, 1, 2, 3, 4, 5, 7][Math.floor(Math.random() * 7)],
+        hue: [0, 1, 2][Math.floor(Math.random() * 3)],
       });
       if (ripplesRef.current.length > 6) ripplesRef.current.shift();
     };
@@ -390,8 +392,8 @@ export function CueDeck({ active, onSelect }: { active: Cue; onSelect: (cue: Cue
       <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-5 gap-y-3 px-5 py-3.5 sm:px-8 lg:px-[72px]">
         <span className="label flex items-center gap-2 whitespace-nowrap">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-magenta opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-magenta" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-ember" />
           </span>
           Live · run a cue
         </span>
@@ -407,7 +409,7 @@ export function CueDeck({ active, onSelect }: { active: Cue; onSelect: (cue: Cue
                 className={[
                   "cursor-pointer rounded-full border px-3.5 py-2 font-mono text-[11px] tracking-[0.14em] uppercase transition",
                   on
-                    ? "lit-fill border-transparent text-white shadow-[0_0_28px_rgba(255,46,147,0.55)]"
+                    ? "border-transparent bg-ember text-white shadow-[0_0_28px_rgba(255,81,31,0.55)]"
                     : "border-line text-dim hover:border-line-strong hover:text-haze",
                 ].join(" ")}
               >

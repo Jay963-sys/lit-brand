@@ -45,19 +45,59 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="label mt-8">
             Product {String(product.order).padStart(2, "0")} — {product.kicker}
           </p>
-          <h1 className="mt-4 max-w-[16ch] text-[clamp(38px,6.4vw,84px)] text-balance">
+          <h1 className="mt-4 max-w-[16ch] text-[clamp(28px,4.8vw,62px)] text-balance">
             {product.headline}
           </h1>
           <p className="mt-6 max-w-[56ch] text-[clamp(16px,1.6vw,19px)] text-mist">
             {product.summary}
           </p>
           </div>
-          <div className="relative mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center rounded-full border border-line bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_65%)]">
-            <span className="absolute inset-8 rounded-full border border-line" />
-            <ProductVisual slug={product.slug} className="relative w-[78%]" />
-          </div>
+          {product.slug === "litbands" ? (
+            <div className="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-[28px] border border-line">
+              <img
+                src="/brand/litband-hand.webp"
+                alt="A hand holding a glowing red LIT wristband"
+                width={1400}
+                height={1750}
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
+          ) : (
+            <div className="relative mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center rounded-full border border-line bg-[radial-gradient(circle,rgba(255,255,255,0.06),transparent_65%)]">
+              <span className="absolute inset-8 rounded-full border border-line" />
+              <ProductVisual slug={product.slug} className="relative w-[78%]" />
+            </div>
+          )}
         </Wrap>
       </section>
+
+      {product.slug === "litbands" && (
+        <section className="pb-[clamp(50px,8vw,90px)]">
+          <Wrap>
+            <Reveal>
+              <div className="grid items-center overflow-hidden rounded-[28px] border border-line bg-core text-venue md:grid-cols-2">
+                <img
+                  src="/brand/litband-white.webp"
+                  alt="A white LIT wristband with the wordmark debossed on the strap"
+                  width={900}
+                  height={880}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full mix-blend-multiply"
+                />
+                <div className="p-[clamp(26px,4vw,56px)]">
+                  <p className="font-mono text-[12px] tracking-[0.2em] uppercase opacity-60">Your brand, on every wrist</p>
+                  <h2 className="mt-4 text-[clamp(22px,2.7vw,34px)]">Debossed, printed or both.</h2>
+                  <p className="mt-4 text-[16px] opacity-75">
+                    Bands come in your colours with your logo on the strap, so they keep working as a
+                    keepsake long after the lights go down.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </Wrap>
+        </section>
+      )}
 
       <section className="pb-[clamp(50px,8vw,90px)]">
         <Wrap>
@@ -123,7 +163,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   />
                   <ProductVisual slug={p.slug} delay={3} className="relative mb-4 h-20 w-24" />
                   <span className="label relative">{p.kicker}</span>
-                  <h3 className="relative mt-3 text-[clamp(20px,2.2vw,26px)]">{p.name}</h3>
+                  <h3 className="relative mt-3 text-[clamp(17px,1.8vw,20px)]">{p.name}</h3>
                   <p className="relative mt-2 text-[15px] text-mist">{p.summary}</p>
                 </Link>
               ))}

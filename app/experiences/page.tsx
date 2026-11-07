@@ -38,7 +38,7 @@ export default function ExperiencesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-venue via-venue/70 to-transparent" />
                   <div className="relative p-7">
                     <span className="label">{e.kicker}</span>
-                    <h3 className="mt-3 text-[clamp(24px,2.5vw,30px)]">{e.name}</h3>
+                    <h3 className="mt-3 text-[clamp(19px,2vw,23px)]">{e.name}</h3>
                     <p className="mt-2.5 text-[15px] text-mist">{e.summary}</p>
                     <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-haze uppercase">
                       See the cue list

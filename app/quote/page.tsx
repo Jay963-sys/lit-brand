@@ -21,7 +21,7 @@ export default function QuotePage() {
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
           <div>
             <Eyebrow>Get a quote</Eyebrow>
-            <h1 className="max-w-[13ch] text-[clamp(38px,6vw,72px)] text-balance">
+            <h1 className="max-w-[13ch] text-[clamp(28px,4.4vw,54px)] text-balance">
               Tell us about your event.
             </h1>
             <p className="mt-6 max-w-[42ch] text-[clamp(16px,1.5vw,18px)] text-mist">
@@ -31,13 +31,13 @@ export default function QuotePage() {
             <div className="mt-9 space-y-3">
               <a
                 href={whatsappLink}
-                className="block text-[15px] text-haze no-underline transition hover:text-magenta"
+                className="block text-[15px] text-haze no-underline transition hover:text-ember"
               >
                 WhatsApp →
               </a>
               <a
                 href={`mailto:${site.email}`}
-                className="block text-[15px] text-haze no-underline transition hover:text-magenta"
+                className="block text-[15px] text-haze no-underline transition hover:text-ember"
               >
                 {site.email} →
               </a>

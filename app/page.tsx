@@ -3,6 +3,8 @@ import { CrowdStage, MiniCrowd } from "@/components/crowd-canvas";
 import FeelList from "@/components/feel-list";
 import LitWords from "@/components/lit-words";
 import Marquee from "@/components/marquee";
+import PosterWall from "@/components/poster-wall";
+import BrandVideo from "@/components/brand-video";
 import ProductVisual from "@/components/product-visual";
 import Reveal from "@/components/reveal";
 import { Bloom, Eyebrow, GhostButton, GlowButton, H2, Wrap } from "@/components/ui";
@@ -22,8 +24,8 @@ export default function HomePage() {
           <p className="label">
             Live event experience technology &nbsp;·&nbsp; {site.city}
           </p>
-          <h1 className="mt-5 max-w-[11ch] text-[clamp(48px,10vw,150px)] leading-[0.9] text-balance">
-            Lit the moment <span className="lit-text serif">forever.</span>
+          <h1 className="mt-5 max-w-[12ch] text-[clamp(36px,7.2vw,112px)] leading-[0.9] text-balance">
+            Lit the moment <span className="lit-text">forever.</span>
           </h1>
           <p className="mt-7 max-w-[50ch] text-[clamp(16px,1.6vw,20px)] text-mist [text-shadow:0_2px_18px_rgba(5,5,10,0.95)]">
             Smart LED wristbands, lanyards and headsets that pulse, sweep and change colour together.
@@ -44,11 +46,11 @@ export default function HomePage() {
 
       {/* ---------------- Statement ---------------- */}
       <section id="shift" className="relative overflow-hidden py-[clamp(90px,14vw,190px)]">
-        <Bloom color={accentHex.magenta} size={680} opacity={0.12} className="-left-60 top-10" />
+        <Bloom color={accentHex.ember} size={680} opacity={0.1} className="-left-60 top-10" />
         <Wrap className="relative z-10">
           <Eyebrow>Why we exist</Eyebrow>
           <LitWords
-            className="max-w-[22ch] font-display text-[clamp(34px,5.6vw,80px)] leading-[1.02] font-semibold tracking-[-0.035em]"
+            className="max-w-[22ch] font-display text-[clamp(24px,4vw,56px)] leading-[1.02] font-semibold tracking-[-0.035em]"
             text="In many events, the audience simply watches. With Lit Brand, the audience *participates.* Every flash, pulse and colour shift turns the crowd into *part of the show.*"
           />
           <Reveal delay={60}>
@@ -73,13 +75,39 @@ export default function HomePage() {
         </Wrap>
       </section>
 
+      {/* ---------------- Crowd photo ---------------- */}
+      <section aria-label="A crowd wearing LIT wristbands" className="relative">
+        <div className="relative mx-auto max-w-[1600px] overflow-hidden sm:px-8 lg:px-[72px]">
+          <Reveal>
+            <div className="relative overflow-hidden border-y border-line sm:rounded-[28px] sm:border">
+              <img
+                src="/brand/crowd-bands.webp"
+                alt="A crowd with raised hands, every wrist glowing with a LIT band"
+                width={1600}
+                height={800}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/10] w-full object-cover sm:aspect-[2/1]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-venue/90 via-venue/10 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-[clamp(20px,4vw,48px)]">
+                <p className="label !text-haze">Every wrist</p>
+                <p className="mt-3 max-w-[20ch] font-display text-[clamp(22px,3.4vw,44px)] leading-[1.05] font-semibold tracking-[-0.03em]">
+                  Part of the show, <span className="text-ember">not just in the room.</span>
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------------- Products ---------------- */}
       <section id="products" className="relative scroll-mt-20 py-[clamp(72px,11vw,150px)]">
         <Wrap>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <Reveal>
               <Eyebrow>What guests wear</Eyebrow>
-              <H2>Three ways to <span className="serif">light up</span> a room.</H2>
+              <H2>Three ways to <span className="text-ember">light up</span> a room.</H2>
             </Reveal>
             <Reveal delay={60}>
               <p className="max-w-[38ch] text-mist">
@@ -108,7 +136,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex flex-1 flex-col p-[clamp(24px,3vw,34px)]">
                     <span className="label">{p.kicker}</span>
-                    <h3 className="mt-3 text-[clamp(24px,2.6vw,32px)]">{p.name}</h3>
+                    <h3 className="mt-3 text-[clamp(19px,2vw,24px)]">{p.name}</h3>
                     <p className="mt-3 flex-1 text-[15.5px] text-mist">{p.summary}</p>
                     <span className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-haze uppercase">
                       Explore
@@ -128,7 +156,7 @@ export default function HomePage() {
         <Wrap className="relative z-10">
           <Reveal>
             <Eyebrow>The experience</Eyebrow>
-            <H2>Moments people feel, then <span className="serif lit-text">film.</span></H2>
+            <H2>Moments people feel, then <span className="lit-text-pulse">film.</span></H2>
           </Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {featured.map((e, i) => (
@@ -141,7 +169,7 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-venue via-venue/60 to-transparent" />
                   <div className="relative p-7">
                     <span className="label">{e.name}</span>
-                    <h3 className="mt-3 text-[clamp(22px,2.3vw,28px)] leading-[1.05]">{e.moment}</h3>
+                    <h3 className="mt-3 text-[clamp(17px,1.8vw,21px)] leading-[1.05]">{e.moment}</h3>
                     <span className="mt-5 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-haze uppercase">
                       See how we light it
                       <span className="transition group-hover:translate-x-1.5">→</span>
@@ -155,6 +183,43 @@ export default function HomePage() {
             <GhostButton href="/experiences">All experiences</GhostButton>
           </div>
         </Wrap>
+      </section>
+
+      {/* ---------------- Identity ---------------- */}
+      <section aria-labelledby="identity" className="overflow-hidden pb-[clamp(72px,11vw,150px)]">
+        <Wrap>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Reveal>
+              <Eyebrow>The identity</Eyebrow>
+              <H2>
+                <span id="identity">Made for the dark. Made to be </span>
+                <span className="lit-text-pulse">seen.</span>
+              </H2>
+            </Reveal>
+            <Reveal delay={60}>
+              <p className="max-w-[40ch] text-mist">
+                Five lights, one crowd. The mark is people coming together — and every one of them
+                is lit.
+              </p>
+            </Reveal>
+          </div>
+        </Wrap>
+        <Wrap className="mt-14">
+          <Reveal>
+            <img
+              src="/brand/poster-mockup.webp"
+              alt="Three LIT posters lit up on a dark wall"
+              width={1600}
+              height={1200}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/10] w-full rounded-[28px] border border-line object-cover"
+            />
+          </Reveal>
+        </Wrap>
+        <div className="mt-5">
+          <PosterWall />
+        </div>
       </section>
 
       {/* ---------------- Feelings ---------------- */}
@@ -179,17 +244,17 @@ export default function HomePage() {
         <Wrap className="relative z-10">
           <Reveal>
             <Eyebrow>Control</Eyebrow>
-            <H2>Programmed to <span className="serif">your</span> show, not a default setting.</H2>
+            <H2>Programmed to <span className="text-ember">your</span> show, not a default setting.</H2>
           </Reveal>
           <div className="mt-14 grid gap-5 sm:grid-cols-2">
             {capabilities.map((c, i) => (
               <Reveal key={c.title} delay={i * 70}>
                 <div className="group relative h-full overflow-hidden rounded-[22px] border border-line bg-venue-2 p-[clamp(24px,3vw,36px)] transition hover:border-line-strong">
                   <span className="lit-fill absolute inset-x-0 top-0 h-px opacity-0 transition group-hover:opacity-100" />
-                  <span className="font-mono text-[12px] tracking-[0.2em] text-magenta">
+                  <span className="font-mono text-[12px] tracking-[0.2em] text-ember">
                     CUE {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 text-[clamp(20px,2.2vw,26px)]">{c.title}</h3>
+                  <h3 className="mt-4 text-[clamp(17px,1.8vw,20px)]">{c.title}</h3>
                   <p className="mt-3 text-base text-mist">{c.body}</p>
                 </div>
               </Reveal>
@@ -203,7 +268,7 @@ export default function HomePage() {
         <Wrap>
           <Reveal>
             <Eyebrow>How it works</Eyebrow>
-            <H2>From brief to <span className="serif">blackout</span> in four steps.</H2>
+            <H2>From brief to <span className="text-ember">blackout</span> in four steps.</H2>
           </Reveal>
           <ol className="relative mt-16 grid list-none gap-10 p-0 md:grid-cols-4 md:gap-6">
             <span
@@ -212,10 +277,10 @@ export default function HomePage() {
             />
             {steps.map((s, i) => (
               <Reveal key={s.title} as="li" delay={i * 90} className="relative">
-                <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-venue font-mono text-[13px] text-haze shadow-[0_0_30px_rgba(255,46,147,0.35)]">
+                <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-venue font-mono text-[13px] text-haze shadow-[0_0_30px_rgba(255,81,31,0.35)]">
                   {i + 1}
                 </span>
-                <h3 className="mt-6 text-[clamp(19px,1.9vw,23px)]">{s.title}</h3>
+                <h3 className="mt-6 text-[clamp(16px,1.6vw,18px)]">{s.title}</h3>
                 <p className="mt-3 text-[15.5px] text-mist">{s.body}</p>
               </Reveal>
             ))}
@@ -227,22 +292,25 @@ export default function HomePage() {
       <section className="pb-[clamp(72px,11vw,150px)]">
         <Wrap>
           <Reveal>
-            <div className="relative overflow-hidden rounded-[32px] border border-line bg-venue px-[clamp(22px,5vw,60px)] py-[clamp(60px,10vw,130px)] text-center">
-              <MiniCrowd cue="sweep" className="opacity-60" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,5,10,0.85),rgba(5,5,10,0.35)_70%)]" />
-              <p className="label relative">{site.altTagline}</p>
-              <h2 className="relative mx-auto mt-6 max-w-[14ch] text-[clamp(40px,7vw,104px)] leading-[0.92] text-balance">
-                Ready to light up <span className="lit-text serif">your crowd?</span>
-              </h2>
-              <p className="relative mx-auto mt-6 max-w-[48ch] text-mist">
-                Send the date, the venue and roughly how many guests. We&apos;ll come back with a
-                quote and a suggested cue list.
-              </p>
-              <div className="relative mt-9 flex flex-wrap justify-center gap-3">
-                <GlowButton href="/quote">Get a quote</GlowButton>
-                <GhostButton href={whatsappLink} external>
-                  Chat on WhatsApp
-                </GhostButton>
+            <div className="relative grid overflow-hidden rounded-[32px] border border-line bg-venue md:grid-cols-[1.15fr_0.85fr]">
+              <div className="relative z-10 flex flex-col justify-center px-[clamp(22px,5vw,64px)] py-[clamp(48px,8vw,110px)]">
+                <p className="label">{site.altTagline}</p>
+                <h2 className="mt-6 max-w-[13ch] text-[clamp(30px,5vw,72px)] leading-[0.98] text-balance">
+                  Ready to light up <span className="lit-text">your crowd?</span>
+                </h2>
+                <p className="mt-6 max-w-[44ch] text-mist">
+                  Send the date, the venue and roughly how many guests. We&apos;ll come back with a
+                  quote and a suggested cue list.
+                </p>
+                <div className="mt-9 flex flex-wrap gap-3">
+                  <GlowButton href="/quote">Get a quote</GlowButton>
+                  <GhostButton href={whatsappLink} external>
+                    Chat on WhatsApp
+                  </GhostButton>
+                </div>
+              </div>
+              <div className="relative min-h-[360px] border-t border-line bg-black md:border-t-0 md:border-l">
+                <BrandVideo className="absolute inset-0 h-full w-full object-cover" />
               </div>
             </div>
           </Reveal>

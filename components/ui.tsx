@@ -41,7 +41,7 @@ export function GlowButton({
   external?: boolean;
 }) {
   const cls =
-    "lit-fill lit-shimmer inline-block rounded-full px-5 py-3 text-sm font-semibold text-white no-underline shadow-[0_0_34px_rgba(255,46,147,0.35)] transition hover:-translate-y-0.5 hover:brightness-110";
+    "lit-fill lit-shimmer inline-block rounded-full px-5 py-3 text-sm font-semibold text-white no-underline shadow-[0_0_34px_rgba(255,81,31,0.35)] transition hover:-translate-y-0.5 hover:brightness-110";
   return external ? (
     <a href={href} className={cls}>
       {children}
@@ -81,6 +81,6 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
 
 export function H2({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={`max-w-[19ch] text-[clamp(30px,4.6vw,60px)] text-balance ${className}`}>{children}</h2>
+    <h2 className={`max-w-[22ch] text-[clamp(24px,3.5vw,46px)] text-balance ${className}`}>{children}</h2>
   );
 }

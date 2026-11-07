@@ -9,9 +9,9 @@
 export type Accent = "ember" | "magenta" | "electric";
 
 export const accentHex: Record<Accent, string> = {
-  ember: "#ff4d1c",
-  magenta: "#ff2e93",
-  electric: "#3d6bff",
+  ember: "#ff511f", // Ember
+  magenta: "#fff6ec", // Core — the name is legacy, the colour is brand
+  electric: "#2e5bff", // Pulse
 };
 
 /* ------------------------------------------------------------------ */

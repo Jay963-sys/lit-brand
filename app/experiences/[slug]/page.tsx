@@ -42,7 +42,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
           <p className="label mt-8">
             {e.name} · {e.kicker}
           </p>
-          <h1 className="mt-4 max-w-[15ch] text-[clamp(40px,7vw,96px)] leading-[0.94] text-balance">
+          <h1 className="mt-4 max-w-[15ch] text-[clamp(28px,5vw,70px)] leading-[0.94] text-balance">
             {e.headline}
           </h1>
           <p className="mt-6 max-w-[56ch] text-[clamp(16px,1.6vw,19px)] text-mist">{e.summary}</p>
@@ -75,7 +75,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
                     >
                       <ProductVisual slug={s} delay={i * 4} className="h-16 w-20 shrink-0" />
                       <div>
-                        <p className="font-display text-[17px] font-bold text-haze">{p.name}</p>
+                        <p className="font-display text-[14px] font-semibold text-haze">{p.name}</p>
                         <p className="text-[13.5px] text-dim">{p.kicker}</p>
                       </div>
                     </Link>
@@ -90,11 +90,11 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
                 <ol className="list-none p-0">
                   {e.cueList.map((c, i) => (
                     <li key={c.cue + i} className="flex gap-4 border-b border-line py-4 last:border-0">
-                      <span className="font-mono text-[12px] tracking-[0.16em] text-magenta">
+                      <span className="font-mono text-[12px] tracking-[0.16em] text-ember">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div>
-                        <p className="font-display text-[18px] font-bold">{c.cue}</p>
+                        <p className="font-display text-[15px] font-semibold">{c.cue}</p>
                         <p className="mt-1 text-[14.5px] text-mist">{c.moment}</p>
                       </div>
                     </li>
@@ -122,7 +122,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
             <div className="absolute inset-0 bg-gradient-to-r from-venue via-venue/80 to-venue/30" />
             <div className="relative p-[clamp(28px,5vw,56px)]">
               <span className="label">Next experience</span>
-              <p className="mt-4 font-display text-[clamp(30px,5vw,64px)] leading-none font-semibold tracking-[-0.035em] text-haze">
+              <p className="mt-4 font-display text-[clamp(24px,3.8vw,48px)] leading-none font-semibold tracking-[-0.035em] text-haze">
                 {next.name} <span className="inline-block transition group-hover:translate-x-2">→</span>
               </p>
             </div>

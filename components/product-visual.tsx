@@ -77,7 +77,7 @@ function Headset({ id }: { id: string }) {
   );
 }
 
-const tint: Record<string, string> = { litbands: "#ff4d1c", lanyards: "#c43bff", headsets: "#3d8bff" };
+const tint: Record<string, string> = { litbands: "#ff511f", lanyards: "#fff6ec", headsets: "#2e5bff" };
 
 export default function ProductVisual({
   slug,

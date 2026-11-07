@@ -32,7 +32,7 @@ function Submit() {
     <button
       type="submit"
       disabled={pending}
-      className="lit-fill cursor-pointer rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_34px_rgba(255,46,147,0.35)] transition hover:brightness-110 disabled:cursor-wait disabled:opacity-60"
+      className="lit-fill cursor-pointer rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-[0_0_34px_rgba(255,81,31,0.35)] transition hover:brightness-110 disabled:cursor-wait disabled:opacity-60"
     >
       {pending ? "Sending…" : "Send request"}
     </button>
@@ -56,7 +56,7 @@ function QuoteFormInner({ preselect }: { preselect?: string }) {
     return (
       <div className="rounded-2xl border border-line bg-venue-2 p-10 text-center">
         <p className="label">Request sent</p>
-        <h3 className="lit-text mt-4 text-[clamp(24px,3vw,34px)]">Talk soon.</h3>
+        <h3 className="lit-text mt-4 text-[clamp(20px,2.4vw,26px)]">Talk soon.</h3>
         <p className="mx-auto mt-4 max-w-[42ch] text-mist">{state.message}</p>
         <a
           href={whatsappLink}

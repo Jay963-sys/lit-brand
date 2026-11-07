@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Instrument_Serif, DM_Mono } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
@@ -10,13 +11,19 @@ const interTight = Inter_Tight({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-inter-tight",
 });
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument-serif",
+// Brand fonts from the OA-Studios kit, self-hosted from app/fonts.
+const unbounded = localFont({
+  src: "./fonts/Unbounded.ttf",
+  weight: "200 900",
+  variable: "--font-unbounded",
+  display: "swap",
 });
-const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-dm-mono" });
+const monospace821 = localFont({
+  src: "./fonts/Monospace821.ttf",
+  weight: "400",
+  variable: "--font-monospace-821",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -37,7 +44,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable} ${dmMono.variable}`}>
+    <html lang="en" className={`${interTight.variable} ${unbounded.variable} ${monospace821.variable}`}>
       <body>
         <SiteHeader />
         <main>{children}</main>

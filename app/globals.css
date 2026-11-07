@@ -1,22 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  /* Venue palette — dark room, chromatic bloom */
-  --color-venue: #05050a;
-  --color-venue-2: #0b0a12;
-  --color-haze: #f2ecff;
-  --color-mist: #b7b2cb;
-  --color-dim: #84819a;
-  --color-ember: #ff4d1c;
-  --color-magenta: #ff2e93;
-  --color-electric: #3d6bff;
-  --color-line: rgba(242, 236, 255, 0.12);
-  --color-line-strong: rgba(242, 236, 255, 0.3);
+  /* LIT brand palette (OA-Studios brand kit v1) */
+  --color-blackout: #07060b;
+  --color-ember: #ff511f;
+  --color-pulse: #2e5bff;
+  --color-core: #fff6ec;
+  --color-deep: #0b0a5e;
 
-  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  /* Working names used across the site, mapped onto the brand palette */
+  --color-venue: #07060b; /* Blackout */
+  --color-venue-2: #0e0c18; /* Blackout lifted toward Deep, for cards */
+  --color-haze: #fff6ec; /* Core */
+  --color-mist: #c4bcb4;
+  --color-dim: #8c857f;
+  --color-electric: #2e5bff; /* Pulse */
+  /* Legacy name kept so nothing breaks; points at a brand colour. */
+  --color-magenta: #ff511f;
+  --color-line: rgba(255, 246, 236, 0.12);
+  --color-line-strong: rgba(255, 246, 236, 0.3);
+
+  --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
-  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+  --font-mono: var(--font-monospace-821), ui-monospace, monospace;
 }
 
 @layer base {
@@ -46,18 +52,18 @@
   h3 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
     overflow-wrap: break-word;
   }
 
   ::selection {
-    background: var(--color-magenta);
+    background: var(--color-ember);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-magenta);
+    outline: 2px solid var(--color-ember);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -72,36 +78,17 @@
 }
 
 @utility lit-text {
-  background-image: linear-gradient(
-    96deg,
-    var(--color-ember),
-    var(--color-magenta) 25%,
-    var(--color-electric) 50%,
-    var(--color-magenta) 75%,
-    var(--color-ember)
-  );
-  background-size: 200% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  padding-right: 0.06em; /* keeps italic overhang inside the gradient */
+  /* Brand accent text: solid Ember (no gradients — brand colours only) */
+  color: var(--color-ember);
+}
+@utility lit-text-pulse {
+  color: var(--color-pulse);
 }
 
-/* Elegant italic serif for accent words */
-@utility serif {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
 
 @utility lit-fill {
-  background-image: linear-gradient(
-    100deg,
-    var(--color-ember),
-    var(--color-magenta) 55%,
-    var(--color-electric)
-  );
+  /* Primary buttons and highlights: solid Ember */
+  background-color: var(--color-ember);
 }
 
 /* ---------- Motion ---------- */
@@ -164,22 +151,22 @@
 
 .outline-text {
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(242, 236, 255, 0.45);
+  -webkit-text-stroke: 1.5px rgba(255, 246, 236, 0.45);
 }
 .lit-dot {
   display: inline-block;
   width: 0.22em;
   height: 0.22em;
   border-radius: 9999px;
-  background: var(--color-magenta);
+  background: var(--color-ember);
   box-shadow:
-    0 0 18px var(--color-magenta),
-    0 0 40px var(--color-magenta);
+    0 0 18px var(--color-ember),
+    0 0 40px var(--color-ember);
 }
 
 /* Scroll-lit statement */
 .lit-word {
-  color: rgba(242, 236, 255, 0.14);
+  color: rgba(255, 246, 236, 0.14);
   transition:
     color 0.35s ease,
     text-shadow 0.35s ease;
@@ -187,15 +174,9 @@
 .lit-word[data-on="true"] {
   color: var(--color-haze);
 }
-.lit-word-accent {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-}
 .lit-word-accent[data-on="true"] {
-  color: var(--color-magenta);
-  text-shadow: 0 0 30px rgba(255, 46, 147, 0.55);
+  color: var(--color-ember);
+  text-shadow: 0 0 30px rgba(255, 81, 31, 0.5);
 }
 
 /* Button shine */
@@ -217,7 +198,7 @@
 
 /* Lit list — lines light as they pass the middle of the screen */
 .feel-line {
-  color: rgba(242, 236, 255, 0.16);
+  color: rgba(255, 246, 236, 0.16);
   transition:
     color 0.5s ease,
     text-shadow 0.5s ease,
@@ -258,7 +239,14 @@
   .marquee-track,
   .marquee-track-reverse,
   .lit-float,
-  .lit-shimmer::after {
+  .lit-shimmer::after,
+  .brand-video {
     animation: none !important;
   }
+}
+
+/* Brand pattern (from the packaging paper): the mark tiled at low contrast */
+.brand-pattern {
+  background-image: url("/brand/pattern.svg");
+  background-size: 64px 56px;
 }

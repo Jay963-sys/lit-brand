@@ -54,7 +54,7 @@ export default function SiteHeader() {
         <div className="flex items-center gap-3">
           <Link
             href="/quote"
-            className="lit-fill lit-shimmer hidden rounded-full px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-[0_0_34px_rgba(255,46,147,0.4)] transition hover:brightness-110 sm:inline-block"
+            className="lit-fill lit-shimmer hidden rounded-full px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-[0_0_34px_rgba(255,81,31,0.4)] transition hover:brightness-110 sm:inline-block"
           >
             Book your event
           </Link>
@@ -87,7 +87,7 @@ export default function SiteHeader() {
               <li key={item.href} style={{ transitionDelay: `${open ? 80 + i * 50 : 0}ms` }} className={`transition duration-500 ${open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}>
                 <Link
                   href={item.href}
-                  className="block py-1.5 font-display text-[clamp(30px,9vw,40px)] leading-tight font-semibold tracking-[-0.04em] text-haze no-underline"
+                  className="block py-1.5 font-display text-[clamp(24px,7vw,32px)] leading-tight font-semibold tracking-[-0.04em] text-haze no-underline"
                 >
                   {item.label}
                 </Link>

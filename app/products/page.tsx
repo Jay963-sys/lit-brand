@@ -44,7 +44,7 @@ export default function ProductsPage() {
                     <span className="label">
                       Product {String(p.order).padStart(2, "0")} — {p.kicker}
                     </span>
-                    <h3 className="mt-3 text-[clamp(26px,3.4vw,42px)]">{p.name}</h3>
+                    <h3 className="mt-3 text-[clamp(22px,2.7vw,32px)]">{p.name}</h3>
                   </div>
                   <div className="relative">
                     <p className="text-[clamp(16px,1.5vw,18px)] text-mist">{p.summary}</p>
