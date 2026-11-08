@@ -22,12 +22,28 @@ export const cues: { id: Cue; label: string }[] = [
   { id: "black", label: "Blackout" },
 ];
 
-const AUTO_ORDER: Cue[] = ["wave", "sweep", "pulse", "split", "channels", "strobe"];
+const AUTO_ORDER: Cue[] = [
+  "wave",
+  "sweep",
+  "pulse",
+  "split",
+  "channels",
+  "strobe",
+];
 
 // Brand colours only: Ember, Pulse and Core. Repeated so random picks are
 // weighted roughly 3 Ember : 2 Pulse : 3 Core.
 // 0 ember · 1 pulse · 2 core · 3 pulse · 4 core · 5 ember · 6 core · 7 ember
-const HUES = ["#FF511F", "#2E5BFF", "#FFF6EC", "#2E5BFF", "#FFF6EC", "#FF511F", "#FFF6EC", "#FF511F"];
+const HUES = [
+  "#FF511F",
+  "#2E5BFF",
+  "#FFF6EC",
+  "#2E5BFF",
+  "#FFF6EC",
+  "#FF511F",
+  "#FFF6EC",
+  "#FF511F",
+];
 const BEAM_HUE: Record<Cue, number> = {
   wave: 0,
   pulse: 1,
@@ -39,7 +55,15 @@ const BEAM_HUE: Record<Cue, number> = {
   glow: 0,
 };
 
-type Dot = { x: number; y: number; u: number; v: number; s: number; r: number; h: number };
+type Dot = {
+  x: number;
+  y: number;
+  u: number;
+  v: number;
+  s: number;
+  r: number;
+  h: number;
+};
 type Ripple = { x: number; y: number; t0: number; hue: number };
 
 /**
@@ -66,7 +90,11 @@ export default function CrowdCanvas({
   const autoRef = useRef(autoCycle);
   const onAutoRef = useRef(onAutoCue);
   const sizeRef = useRef({ w: 0, h: 0 });
-  const pointerRef = useRef<{ x: number; y: number; on: boolean }>({ x: 0, y: 0, on: false });
+  const pointerRef = useRef<{ x: number; y: number; on: boolean }>({
+    x: 0,
+    y: 0,
+    on: false,
+  });
   const ripplesRef = useRef<Ripple[]>([]);
 
   cueRef.current = cue;
@@ -116,7 +144,9 @@ export default function CrowdCanvas({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     spritesRef.current = HUES.map((hex) => {
       const s = document.createElement("canvas");
@@ -150,11 +180,18 @@ export default function CrowdCanvas({
       switch (cueRef.current) {
         case "pulse": {
           const p = 0.5 + 0.5 * Math.sin(t * 3 - d.v * 0.5);
-          return [Math.floor(t * 0.4) % 2 ? 1 : 0, 0.12 + 0.88 * Math.pow(p, 2.2)];
+          return [
+            Math.floor(t * 0.4) % 2 ? 1 : 0,
+            0.12 + 0.88 * Math.pow(p, 2.2),
+          ];
         }
         case "sweep": {
-          const idx = Math.floor((d.u * 1.4 + t * 0.25) * HUES.length) % HUES.length;
-          return [(idx + HUES.length) % HUES.length, 0.55 + 0.35 * Math.sin(t * 1.4 + d.r * 6)];
+          const idx =
+            Math.floor((d.u * 1.4 + t * 0.25) * HUES.length) % HUES.length;
+          return [
+            (idx + HUES.length) % HUES.length,
+            0.55 + 0.35 * Math.sin(t * 1.4 + d.r * 6),
+          ];
         }
         case "split": {
           const left = d.u < 0.5;
@@ -171,7 +208,10 @@ export default function CrowdCanvas({
           // Listeners drift between three channels; colour shows who they're on.
           const k = (d.r + Math.floor(t / 6 + d.r * 0.6) * 0.37) % 1;
           const ch = k < 0.42 ? 0 : k < 0.74 ? 3 : 6;
-          const beat = Math.pow(0.5 + 0.5 * Math.sin(t * (ch === 0 ? 4 : ch === 3 ? 3.2 : 2.6)), 3);
+          const beat = Math.pow(
+            0.5 + 0.5 * Math.sin(t * (ch === 0 ? 4 : ch === 3 ? 3.2 : 2.6)),
+            3,
+          );
           return [ch, 0.35 + 0.65 * beat];
         }
         case "glow": {
@@ -190,7 +230,8 @@ export default function CrowdCanvas({
       const { w, h } = sizeRef.current;
       const hex = HUES[BEAM_HUE[cueRef.current]];
       if (cueRef.current === "black") return;
-      const strobeOff = cueRef.current === "strobe" && Math.floor(t * 9) % 2 === 1;
+      const strobeOff =
+        cueRef.current === "strobe" && Math.floor(t * 9) % 2 === 1;
       if (strobeOff) return;
       const count = w < 760 ? 2 : 4;
       ctx.globalCompositeOperation = "lighter";
@@ -240,7 +281,10 @@ export default function CrowdCanvas({
         if (p.on) {
           const dx = d.x - p.x;
           const dy = d.y - p.y;
-          const dist = Math.abs(dx) < pr && Math.abs(dy) < pr ? Math.sqrt(dx * dx + dy * dy) : pr;
+          const dist =
+            Math.abs(dx) < pr && Math.abs(dy) < pr
+              ? Math.sqrt(dx * dx + dy * dy)
+              : pr;
           if (dist < pr) {
             const k = 1 - dist / pr;
             if (k * k > b) {
@@ -268,7 +312,13 @@ export default function CrowdCanvas({
         if (b < 0.03) continue;
         const sz = d.s * (1.6 + b * 2.8);
         ctx.globalAlpha = Math.min(1, 0.15 + b * 0.85);
-        ctx.drawImage(spritesRef.current[hue], d.x - sz / 2, d.y - sz / 2, sz, sz);
+        ctx.drawImage(
+          spritesRef.current[hue],
+          d.x - sz / 2,
+          d.y - sz / 2,
+          sz,
+          sz,
+        );
       }
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = "source-over";
@@ -281,13 +331,18 @@ export default function CrowdCanvas({
     const start = performance.now();
     const onMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
-      pointerRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top, on: e.pointerType === "mouse" };
+      pointerRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        on: e.pointerType === "mouse",
+      };
     };
     const onLeave = () => {
       pointerRef.current.on = false;
     };
     const onDown = (e: PointerEvent) => {
-      if ((e.target as HTMLElement).closest("a,button,input,select,textarea")) return;
+      if ((e.target as HTMLElement).closest("a,button,input,select,textarea"))
+        return;
       const rect = canvas.getBoundingClientRect();
       ripplesRef.current.push({
         x: e.clientX - rect.left,
@@ -386,7 +441,13 @@ export default function CrowdCanvas({
 }
 
 /** Cue deck — the control surface along the bottom of the hero. */
-export function CueDeck({ active, onSelect }: { active: Cue; onSelect: (cue: Cue) => void }) {
+export function CueDeck({
+  active,
+  onSelect,
+}: {
+  active: Cue;
+  onSelect: (cue: Cue) => void;
+}) {
   return (
     <div className="relative z-30 border-t border-line bg-venue/80">
       <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-5 gap-y-3 px-5 py-3.5 sm:px-8 lg:px-[72px]">
@@ -395,9 +456,12 @@ export function CueDeck({ active, onSelect }: { active: Cue; onSelect: (cue: Cue
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-ember" />
           </span>
-          Live · run a cue
         </span>
-        <div role="group" aria-label="Lighting cues" className="flex flex-wrap gap-2">
+        <div
+          role="group"
+          aria-label="Lighting cues"
+          className="flex flex-wrap gap-2"
+        >
           {cues.map((c) => {
             const on = c.id === active;
             return (
@@ -456,6 +520,18 @@ export function CrowdStage({ children }: { children: React.ReactNode }) {
 }
 
 /** Small self-running crowd for cards. Pauses when off screen. */
-export function MiniCrowd({ cue, className = "" }: { cue: Cue; className?: string }) {
-  return <CrowdCanvas cue={cue} variant="mini" className={`absolute inset-0 h-full w-full ${className}`} />;
+export function MiniCrowd({
+  cue,
+  className = "",
+}: {
+  cue: Cue;
+  className?: string;
+}) {
+  return (
+    <CrowdCanvas
+      cue={cue}
+      variant="mini"
+      className={`absolute inset-0 h-full w-full ${className}`}
+    />
+  );
 }
