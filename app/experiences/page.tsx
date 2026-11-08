@@ -15,10 +15,10 @@ export default function ExperiencesPage() {
   return (
     <>
       <section className="pt-40 pb-[clamp(40px,7vw,80px)]">
-        <Wrap>
+        <Wrap className="flex flex-col items-center text-center">
           <Eyebrow>Experiences</Eyebrow>
-          <H2>If people gather, they can light up together.</H2>
-          <p className="mt-6 max-w-[58ch] text-[clamp(16px,1.5vw,18.5px)] text-mist">
+          <H2 className="mx-auto">If people gather, they can light up together.</H2>
+          <p className="mx-auto mt-6 max-w-[58ch] text-[clamp(16px,1.5vw,18.5px)] text-mist">
             Every format has its own big moments. Here is how we light each one — and the cue list
             we would start from.
           </p>
@@ -36,7 +36,7 @@ export default function ExperiencesPage() {
                 >
                   <MiniCrowd cue={e.scene} className="transition duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-venue via-venue/70 to-transparent" />
-                  <div className="relative p-7">
+                  <div className="relative p-7 text-center">
                     <span className="label">{e.kicker}</span>
                     <h3 className="mt-3 text-[clamp(19px,2vw,23px)]">{e.name}</h3>
                     <p className="mt-2.5 text-[15px] text-mist">{e.summary}</p>
@@ -49,7 +49,7 @@ export default function ExperiencesPage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-14">
+          <div className="mt-14 flex justify-center">
             <GlowButton href="/quote">Plan your event with us</GlowButton>
           </div>
         </Wrap>

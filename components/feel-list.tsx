@@ -27,7 +27,7 @@ export default function FeelList({ items }: { items: readonly string[] }) {
   }, []);
 
   return (
-    <ul ref={ref} className="list-none space-y-2 p-0">
+    <ul ref={ref} className="list-none space-y-2 p-0 text-center">
       {items.map((item) => (
         <li
           key={item}

@@ -206,7 +206,7 @@
 }
 .feel-line[data-on="true"] {
   color: var(--color-haze);
-  transform: translateX(14px);
+  transform: scale(1.03);
 }
 
 /* Scroll reveal */

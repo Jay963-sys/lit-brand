@@ -15,10 +15,10 @@ export default function ProductsPage() {
   return (
     <>
       <section className="pt-40 pb-[clamp(40px,7vw,80px)]">
-        <Wrap>
+        <Wrap className="flex flex-col items-center text-center">
           <Eyebrow>Products</Eyebrow>
-          <H2>Three ways to light up a room.</H2>
-          <p className="mt-6 max-w-[58ch] text-[clamp(16px,1.5vw,18.5px)] text-mist">
+          <H2 className="mx-auto">Three ways to light up a room.</H2>
+          <p className="mx-auto mt-6 max-w-[58ch] text-[clamp(16px,1.5vw,18.5px)] text-mist">
             Every product runs on the same control system, so they can be mixed in one venue and
             fired from one cue list.
           </p>
@@ -32,7 +32,7 @@ export default function ProductsPage() {
               <Reveal key={p.slug} delay={i * 80}>
                 <Link
                   href={`/products/${p.slug}`}
-                  className="group relative grid gap-6 overflow-hidden border-b border-line py-10 no-underline md:grid-cols-[220px_1fr_1.4fr] md:items-center"
+                  className="group relative grid gap-6 overflow-hidden border-b border-line justify-items-center py-10 text-center no-underline md:grid-cols-[220px_1fr_1.4fr] md:items-center md:justify-items-start md:text-left"
                 >
                   <span
                     aria-hidden
@@ -48,7 +48,7 @@ export default function ProductsPage() {
                   </div>
                   <div className="relative">
                     <p className="text-[clamp(16px,1.5vw,18px)] text-mist">{p.summary}</p>
-                    <ul className="mt-5 flex list-none flex-wrap gap-2 p-0">
+                    <ul className="mt-5 flex list-none flex-wrap justify-center gap-2 p-0 md:justify-start">
                       {p.bestFor.map((b) => (
                         <li
                           key={b}
@@ -66,7 +66,7 @@ export default function ProductsPage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-14">
+          <div className="mt-14 flex justify-center">
             <GlowButton href="/quote">Get a quote for your event</GlowButton>
           </div>
         </Wrap>

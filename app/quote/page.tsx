@@ -19,7 +19,7 @@ export default function QuotePage() {
       <Bloom color={accentHex.magenta} size={620} opacity={0.18} className="-top-52 right-0" />
       <Wrap className="relative z-10">
         <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          <div>
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <Eyebrow>Get a quote</Eyebrow>
             <h1 className="max-w-[13ch] text-[clamp(28px,4.4vw,54px)] text-balance">
               Tell us about your event.

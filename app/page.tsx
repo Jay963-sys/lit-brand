@@ -12,7 +12,7 @@ import {
   Eyebrow,
   GhostButton,
   GlowButton,
-  H2,
+  SectionHead,
   Wrap,
 } from "@/components/ui";
 import {
@@ -35,18 +35,18 @@ export default function HomePage() {
     <>
       {/* ---------------- Hero ---------------- */}
       <CrowdStage>
-        <Wrap className="relative z-30 w-full pt-32 pb-10">
-          <h1 className="mt-5 max-w-[12ch] text-[clamp(36px,7.2vw,112px)] leading-[0.9] text-balance">
+        <Wrap className="relative z-30 flex w-full flex-col items-center pt-32 pb-10 text-center">
+          <h1 className="mx-auto mt-5 max-w-[12ch] text-[clamp(36px,7.2vw,112px)] leading-[0.9] text-balance">
             Lit the moment <span className="lit-text">forever.</span>
           </h1>
-          <p className="mt-7 max-w-[50ch] text-[clamp(16px,1.6vw,20px)] text-mist [text-shadow:0_2px_18px_rgba(5,5,10,0.95)]">
+          <p className="mx-auto mt-7 max-w-[50ch] text-[clamp(16px,1.6vw,20px)] text-mist [text-shadow:0_2px_18px_rgba(5,5,10,0.95)]">
             Smart LED wristbands, lanyards and headsets that pulse, sweep and
             change colour together. In most events the audience watches.{" "}
             <span className="text-haze">
               With Lit Brand, the audience participates.
             </span>
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
             <GlowButton href="/quote">Book Lit Brand for your event</GlowButton>
             <GhostButton href="#products">See the products</GhostButton>
           </div>
@@ -72,15 +72,15 @@ export default function HomePage() {
           opacity={0.1}
           className="-left-60 top-10"
         />
-        <Wrap className="relative z-10">
+        <Wrap className="relative z-10 text-center">
           <Eyebrow>Why we exist</Eyebrow>
           <LitWords
-            className="max-w-[22ch] font-display text-[clamp(24px,4vw,56px)] leading-[1.02] font-semibold tracking-[-0.035em]"
+            className="mx-auto max-w-[22ch] font-display text-[clamp(24px,4vw,56px)] leading-[1.02] font-semibold tracking-[-0.035em]"
             text="In many events, the audience simply watches. With Lit Brand, the audience *participates.* Every flash, pulse and colour shift turns the crowd into *part of the show.*"
           />
           <Reveal delay={60}>
             <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-2">
-              <div className="bg-venue-2 p-[clamp(26px,4vw,48px)]">
+              <div className="bg-venue-2 p-[clamp(26px,4vw,48px)] text-center">
                 <p className="label">Without</p>
                 <p className="mt-4 text-[clamp(17px,1.7vw,21px)] text-mist">
                   A dark crowd lit by phone screens. The light show happens
@@ -88,7 +88,7 @@ export default function HomePage() {
                   everyone else&apos;s.
                 </p>
               </div>
-              <div className="relative overflow-hidden bg-venue-2 p-[clamp(26px,4vw,48px)]">
+              <div className="relative overflow-hidden bg-venue-2 p-[clamp(26px,4vw,48px)] text-center">
                 <div className="lit-fill absolute inset-0 opacity-20" />
                 <p className="label relative !text-haze">With Lit Brand</p>
                 <p className="relative mt-4 text-[clamp(17px,1.7vw,21px)] text-haze">
@@ -117,9 +117,9 @@ export default function HomePage() {
                 className="aspect-[16/10] w-full object-cover sm:aspect-[2/1]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-venue/90 via-venue/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-[clamp(20px,4vw,48px)]">
+              <div className="absolute inset-x-0 bottom-0 flex flex-col items-center p-[clamp(20px,4vw,48px)] text-center">
                 <p className="label !text-haze">Every wrist</p>
-                <p className="mt-3 max-w-[20ch] font-display text-[clamp(22px,3.4vw,44px)] leading-[1.05] font-semibold tracking-[-0.03em]">
+                <p className="mx-auto mt-3 max-w-[20ch] font-display text-[clamp(22px,3.4vw,44px)] leading-[1.05] font-semibold tracking-[-0.03em]">
                   Part of the show,{" "}
                   <span className="text-ember">not just in the room.</span>
                 </p>
@@ -135,21 +135,18 @@ export default function HomePage() {
         className="relative scroll-mt-20 py-[clamp(72px,11vw,150px)]"
       >
         <Wrap>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <Reveal>
-              <Eyebrow>What guests wear</Eyebrow>
-              <H2>
-                Three ways to <span className="text-ember">light up</span> a
-                room.
-              </H2>
-            </Reveal>
-            <Reveal delay={60}>
-              <p className="max-w-[38ch] text-mist">
-                All three run on the same control system, so they mix in one
-                venue and fire from one cue list.
-              </p>
-            </Reveal>
-          </div>
+          <Reveal>
+            <SectionHead
+              eyebrow="What guests wear"
+              title={
+                <>
+                  Three ways to <span className="text-ember">light up</span> a
+                  room.
+                </>
+              }
+              intro="All three run on the same control system, so they mix in one venue and fire from one cue list."
+            />
+          </Reveal>
           <div className="mt-14 grid gap-5 lg:grid-cols-3">
             {products.map((p, i) => (
               <Reveal key={p.slug} delay={i * 90}>
@@ -172,7 +169,7 @@ export default function HomePage() {
                       {String(p.order).padStart(2, "0")}
                     </span>
                   </div>
-                  <div className="flex flex-1 flex-col p-[clamp(24px,3vw,34px)]">
+                  <div className="flex flex-1 flex-col items-center p-[clamp(24px,3vw,34px)] text-center">
                     <span className="label">{p.kicker}</span>
                     <h3 className="mt-3 text-[clamp(19px,2vw,24px)]">
                       {p.name}
@@ -207,11 +204,15 @@ export default function HomePage() {
         />
         <Wrap className="relative z-10">
           <Reveal>
-            <Eyebrow>The experience</Eyebrow>
-            <H2>
-              Moments people feel, then{" "}
-              <span className="lit-text-pulse">film.</span>
-            </H2>
+            <SectionHead
+              eyebrow="The experience"
+              title={
+                <>
+                  Moments people feel, then{" "}
+                  <span className="lit-text-pulse">film.</span>
+                </>
+              }
+            />
           </Reveal>
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {featured.map((e, i) => (
@@ -225,7 +226,7 @@ export default function HomePage() {
                     className="transition duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-venue via-venue/60 to-transparent" />
-                  <div className="relative p-7">
+                  <div className="relative p-7 text-center">
                     <span className="label">{e.name}</span>
                     <h3 className="mt-3 text-[clamp(17px,1.8vw,21px)] leading-[1.05]">
                       {e.moment}
@@ -241,7 +242,7 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-10">
+          <div className="mt-10 flex justify-center">
             <GhostButton href="/experiences">All experiences</GhostButton>
           </div>
         </Wrap>
@@ -253,21 +254,18 @@ export default function HomePage() {
         className="overflow-hidden pb-[clamp(72px,11vw,150px)]"
       >
         <Wrap>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <Reveal>
-              <Eyebrow>The identity</Eyebrow>
-              <H2>
-                <span id="identity">Made for the dark. Made to be </span>
-                <span className="lit-text-pulse">seen.</span>
-              </H2>
-            </Reveal>
-            <Reveal delay={60}>
-              <p className="max-w-[40ch] text-mist">
-                Five lights, one crowd. The mark is people coming together — and
-                every one of them is lit.
-              </p>
-            </Reveal>
-          </div>
+          <Reveal>
+            <SectionHead
+              eyebrow="The identity"
+              title={
+                <span id="identity">
+                  Made for the dark. Made to be{" "}
+                  <span className="lit-text-pulse">seen.</span>
+                </span>
+              }
+              intro="Five lights, one crowd. The mark is people coming together — and every one of them is lit."
+            />
+          </Reveal>
         </Wrap>
         <Wrap className="mt-14">
           <Reveal>
@@ -290,10 +288,10 @@ export default function HomePage() {
       {/* ---------------- Feelings ---------------- */}
       <section className="relative overflow-hidden border-y border-line py-[clamp(90px,13vw,180px)]">
         <Wrap>
-          <div className="grid gap-12 lg:grid-cols-[300px_1fr] lg:gap-16">
-            <div className="lg:sticky lg:top-32 lg:self-start">
+          <div className="mx-auto flex max-w-[1000px] flex-col items-center gap-12 text-center">
+            <div className="flex flex-col items-center">
               <Eyebrow>Why it matters</Eyebrow>
-              <p className="max-w-[30ch] text-[clamp(17px,1.6vw,20px)] text-mist">
+              <p className="max-w-[46ch] text-[clamp(17px,1.6vw,20px)] text-mist">
                 People don&apos;t remember events because they attended. They
                 remember how the moment made them feel. Lit Brand helps create:
               </p>
@@ -316,16 +314,20 @@ export default function HomePage() {
         />
         <Wrap className="relative z-10">
           <Reveal>
-            <Eyebrow>Control</Eyebrow>
-            <H2>
-              Programmed to <span className="text-ember">your</span> show, not a
-              default setting.
-            </H2>
+            <SectionHead
+              eyebrow="Control"
+              title={
+                <>
+                  Programmed to <span className="text-ember">your</span> show,
+                  not a default setting.
+                </>
+              }
+            />
           </Reveal>
           <div className="mt-14 grid gap-5 sm:grid-cols-2">
             {capabilities.map((c, i) => (
               <Reveal key={c.title} delay={i * 70}>
-                <div className="group relative h-full overflow-hidden rounded-[22px] border border-line bg-venue-2 p-[clamp(24px,3vw,36px)] transition hover:border-line-strong">
+                <div className="group relative h-full overflow-hidden rounded-[22px] border border-line bg-venue-2 p-[clamp(24px,3vw,36px)] text-center transition hover:border-line-strong">
                   <span className="lit-fill absolute inset-x-0 top-0 h-px opacity-0 transition group-hover:opacity-100" />
                   <span className="font-mono text-[12px] tracking-[0.2em] text-ember">
                     CUE {String(i + 1).padStart(2, "0")}
@@ -345,11 +347,15 @@ export default function HomePage() {
       <section id="how" className="scroll-mt-20 py-[clamp(72px,11vw,150px)]">
         <Wrap>
           <Reveal>
-            <Eyebrow>How it works</Eyebrow>
-            <H2>
-              From brief to <span className="text-ember">blackout</span> in four
-              steps.
-            </H2>
+            <SectionHead
+              eyebrow="How it works"
+              title={
+                <>
+                  From brief to <span className="text-ember">blackout</span> in
+                  four steps.
+                </>
+              }
+            />
           </Reveal>
           <ol className="relative mt-16 grid list-none gap-10 p-0 md:grid-cols-4 md:gap-6">
             <span
@@ -357,7 +363,12 @@ export default function HomePage() {
               className="lit-fill absolute top-[22px] right-0 left-0 hidden h-px opacity-60 md:block"
             />
             {steps.map((s, i) => (
-              <Reveal key={s.title} as="li" delay={i * 90} className="relative">
+              <Reveal
+                key={s.title}
+                as="li"
+                delay={i * 90}
+                className="relative flex flex-col items-center text-center"
+              >
                 <span className="relative flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-venue font-mono text-[13px] text-haze shadow-[0_0_30px_rgba(255,81,31,0.35)]">
                   {i + 1}
                 </span>
@@ -376,9 +387,9 @@ export default function HomePage() {
         <Wrap>
           <Reveal>
             <div className="relative grid overflow-hidden rounded-[32px] border border-line bg-venue md:grid-cols-[1.15fr_0.85fr]">
-              <div className="relative z-10 flex flex-col justify-center px-[clamp(22px,5vw,64px)] py-[clamp(48px,8vw,110px)]">
+              <div className="relative z-10 flex flex-col items-center justify-center px-[clamp(22px,5vw,64px)] py-[clamp(48px,8vw,110px)] text-center">
                 <p className="label">{site.altTagline}</p>
-                <h2 className="mt-6 max-w-[13ch] text-[clamp(30px,5vw,72px)] leading-[0.98] text-balance">
+                <h2 className="mx-auto mt-6 max-w-[13ch] text-[clamp(30px,5vw,72px)] leading-[0.98] text-balance">
                   Ready to light up{" "}
                   <span className="lit-text">your crowd?</span>
                 </h2>
@@ -386,7 +397,7 @@ export default function HomePage() {
                   Send the date, the venue and roughly how many guests.
                   We&apos;ll come back with a quote and a suggested cue list.
                 </p>
-                <div className="mt-9 flex flex-wrap gap-3">
+                <div className="mt-9 flex flex-wrap justify-center gap-3">
                   <GlowButton href="/quote">Get a quote</GlowButton>
                   <GhostButton href={whatsappLink} external>
                     Chat on WhatsApp

@@ -35,17 +35,17 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
       <section className="relative flex min-h-[78svh] flex-col justify-end overflow-hidden pt-40 pb-[clamp(40px,7vw,80px)]">
         <MiniCrowd cue={e.scene} />
         <div className="absolute inset-0 bg-gradient-to-t from-venue via-venue/45 to-venue/40" />
-        <Wrap className="relative z-10 w-full">
+        <Wrap className="relative z-10 flex w-full flex-col items-center text-center">
           <Link href="/experiences" className="label no-underline transition hover:text-haze">
             ← All experiences
           </Link>
           <p className="label mt-8">
             {e.name} · {e.kicker}
           </p>
-          <h1 className="mt-4 max-w-[15ch] text-[clamp(28px,5vw,70px)] leading-[0.94] text-balance">
+          <h1 className="mx-auto mt-4 max-w-[15ch] text-[clamp(28px,5vw,70px)] leading-[0.94] text-balance">
             {e.headline}
           </h1>
-          <p className="mt-6 max-w-[56ch] text-[clamp(16px,1.6vw,19px)] text-mist">{e.summary}</p>
+          <p className="mx-auto mt-6 max-w-[56ch] text-[clamp(16px,1.6vw,19px)] text-mist">{e.summary}</p>
         </Wrap>
       </section>
 
@@ -127,7 +127,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
               </p>
             </div>
           </Link>
-          <div className="mt-10">
+          <div className="mt-10 flex justify-center">
             <GhostButton href="/products">See the products</GhostButton>
           </div>
         </Wrap>

@@ -450,17 +450,14 @@ export function CueDeck({
 }) {
   return (
     <div className="relative z-30 border-t border-line bg-venue/80">
-      <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-5 gap-y-3 px-5 py-3.5 sm:px-8 lg:px-[72px]">
+      <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-center gap-x-5 gap-y-3 px-5 py-3.5 sm:px-8 lg:justify-start lg:px-[72px]">
         <span className="label flex items-center gap-2 whitespace-nowrap">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-ember" />
-          </span>
+          <span className="relative flex h-2 w-2"></span>
         </span>
         <div
           role="group"
           aria-label="Lighting cues"
-          className="flex flex-wrap gap-2"
+          className="flex flex-wrap justify-center gap-2"
         >
           {cues.map((c) => {
             const on = c.id === active;

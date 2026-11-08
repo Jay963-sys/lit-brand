@@ -75,8 +75,27 @@ export function GhostButton({
   );
 }
 
-export function Eyebrow({ children }: { children: React.ReactNode }) {
-  return <p className="label mb-5">{children}</p>;
+export function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <p className={`label mb-5 ${className}`}>{children}</p>;
+}
+
+/** Centered section heading: eyebrow, title and optional intro line. */
+export function SectionHead({
+  eyebrow,
+  title,
+  intro,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  intro?: React.ReactNode;
+}) {
+  return (
+    <div className="mx-auto flex max-w-[860px] flex-col items-center text-center">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <H2 className="mx-auto">{title}</H2>
+      {intro && <p className="mt-5 max-w-[48ch] text-mist">{intro}</p>}
+    </div>
+  );
 }
 
 export function H2({ children, className = "" }: { children: React.ReactNode; className?: string }) {

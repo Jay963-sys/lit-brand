@@ -38,7 +38,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           className="-top-40 -right-40"
         />
         <Wrap className="relative z-10 grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <div>
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <Link href="/products" className="label no-underline transition hover:text-haze">
             ← All products
           </Link>
